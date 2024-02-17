@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Age Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Age Calculator</h1>
+
+        <div class="input-container">
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob">
+        </div>
+
+        <div class="input-container">
+            <label for="upto-day">Up to Day:</label>
+            <input type="date" id="upto-day">
+        </div>
+
+        <button onclick="calculateAge()">Calculate Age</button>
+
+        <div class="result-container">
+            <label for="result">Your Age:</label>
+            <input type="text" id="result" readonly>
+        </div>
+    </div>
+
+    <script>
+        function calculateAge() {
+            var dob = new Date(document.getElementById('dob').value);
+            var uptoDay = new Date(document.getElementById('upto-day').value);
+    
+            var ageInMilliseconds = uptoDay - dob;
+            var ageInYears = ageInMilliseconds / (365.2425 * 24 * 60 * 60 * 1000); // Adjusted for more accurate days
+    
+            var years = Math.floor(ageInYears);
+            var months = Math.floor((ageInYears - years) * 12);
+            var days = Math.floor((ageInYears * 365.25) % 30.44);
+    
+            var result = years + " years, " + months + " months, and " + days + " days.";
+    
+            document.getElementById('result').value = result;
+        }
+    </script>
+</body>
+</html>
